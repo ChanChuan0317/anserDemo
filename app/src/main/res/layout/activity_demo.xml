@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.example.mylibrary.paper.view.SlidingUpPanelLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="bottom"
+    android:orientation="vertical"
+    tools:context=".DemoActivity">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#abcdef">
+
+
+        <com.example.mylibrary.paper.view.QuestionViewPager
+            android:id="@+id/readerViewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#cccccc" />
+
+
+        <ImageView
+            android:id="@+id/shadowView"
+            android:layout_width="20dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/shadow_right_light" />
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:text="交卷"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/currentPosition"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@id/all_number"
+                android:text="1"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/all_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:text="/100"
+                android:textSize="15sp" />
+        </RelativeLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+</com.example.mylibrary.paper.view.SlidingUpPanelLayout>
