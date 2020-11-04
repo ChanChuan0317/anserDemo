@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.mylibrary.paper.view.QuestionViewPager;
+import com.example.wuhe.myapplication.adapter.DemoAdapter;
 import com.example.wuhe.myapplication.fragment.DemoFragment;
 
 import java.util.ArrayList;
@@ -40,7 +41,7 @@ public class DemoActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 50; i++) {
             mData.add("abc" + (i + 1));
         }
         readerViewPager = (QuestionViewPager) findViewById(R.id.readerViewPager);
@@ -63,6 +64,7 @@ public class DemoActivity extends AppCompatActivity {
             @Override
             public void onPageScrolled(int pI, float pV, int pI1) {
                 shadowView.setTranslationX(readerViewPager.getWidth() - pI1);
+
             }
 
             @Override
@@ -70,12 +72,14 @@ public class DemoActivity extends AppCompatActivity {
 
             }
 
+
             @Override
             public void onPageScrollStateChanged(int pI) {
 
             }
         });
-        recycler.setLayoutManager(new GridLayoutManager(this, 6));
-        recycler.setAdapter();
+        recycler.setLayoutManager(new GridLayoutManager(this, 5));
+        DemoAdapter demoAdapter = new DemoAdapter(this, mData);
+        recycler.setAdapter(demoAdapter);
     }
 }

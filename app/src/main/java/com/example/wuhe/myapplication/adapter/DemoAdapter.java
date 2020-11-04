@@ -6,10 +6,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.wuhe.myapplication.R;
 
 import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * author:Chanchuan
@@ -28,24 +32,30 @@ public class DemoAdapter extends RecyclerView.Adapter<DemoAdapter.ViewHolder> {
 
     @NonNull
     @Override
-    public DemoAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup pViewGroup, int pI) {
-        View root =LayoutInflater.from(pViewGroup.getContext()).inflate(R.layout.item_demo, pViewGroup, false);
-        return null;
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup pViewGroup, int pI) {
+        View root = LayoutInflater.from(pViewGroup.getContext()).inflate(R.layout.item_demo, pViewGroup, false);
+        return new ViewHolder(root);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull DemoAdapter.ViewHolder pViewHolder, int pI) {
-
+    public void onBindViewHolder(@NonNull ViewHolder pViewHolder, int pI) {
+        String s = mData.get(pI);
+        pViewHolder.tvNumber.setText(s);
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return mData == null ? 0 : mData.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
+
+        @BindView(R.id.tv_number)
+        TextView tvNumber;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            ButterKnife.bind(this, itemView);
         }
     }
 }
