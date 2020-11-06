@@ -44,6 +44,7 @@ public class DemoActivity extends AppCompatActivity {
         for (int i = 0; i < 50; i++) {
             mData.add("abc" + (i + 1));
         }
+
         readerViewPager = (QuestionViewPager) findViewById(R.id.readerViewPager);
         shadowView = (ImageView) findViewById(R.id.shadowView);
         readerViewPager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
