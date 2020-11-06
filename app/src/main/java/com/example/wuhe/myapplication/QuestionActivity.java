@@ -27,7 +27,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
-public class QuestionActivity extends AppCompatActivity implements QuestionFragment.OnModifyQuestionListener,View.OnClickListener{
+public class QuestionActivity extends AppCompatActivity implements QuestionFragment.OnModifyQuestionListener, View.OnClickListener {
 
     private SlidingUpPanelLayout mLayout;
     private TopicAdapter topicAdapter;
@@ -62,7 +62,7 @@ public class QuestionActivity extends AppCompatActivity implements QuestionFragm
         TextView tvNumbers = (TextView) findViewById(R.id.tv_numbers);
         TextView tvDone = (TextView) findViewById(R.id.tv_done);
         tvDone.setText("0");
-        tvNumbers.setText("/"+dataBeans.size());
+        tvNumbers.setText("/" + dataBeans.size());
 
     }
 
@@ -115,10 +115,11 @@ public class QuestionActivity extends AppCompatActivity implements QuestionFragm
     private int prePosition;
     private int curPosition;
     GridLayoutManager gridLayoutManager;
+
     private void initList() {
         recyclerView = (RecyclerView) findViewById(R.id.list);
 
-         gridLayoutManager = new GridLayoutManager(this, 6);
+        gridLayoutManager = new GridLayoutManager(this, 6);
 
         topicAdapter = new TopicAdapter(this);
 
@@ -166,9 +167,9 @@ public class QuestionActivity extends AppCompatActivity implements QuestionFragm
 
             @Override
             public void onPanelStateChanged(View panel, SlidingUpPanelLayout.PanelState previousState, SlidingUpPanelLayout.PanelState newState) {
-               if(newState==SlidingUpPanelLayout.PanelState.COLLAPSED){
-                   MoveToPosition();
-               }
+                if (newState == SlidingUpPanelLayout.PanelState.COLLAPSED) {
+                    MoveToPosition();
+                }
             }
         });
         mLayout.setFadeOnClickListener(new View.OnClickListener() {
@@ -182,7 +183,7 @@ public class QuestionActivity extends AppCompatActivity implements QuestionFragm
     /**
      * 滚动 recycleView 到当前选择的位置
      */
-    private void MoveToPosition(){
+    private void MoveToPosition() {
         gridLayoutManager.scrollToPositionWithOffset(curPosition2, 0);
     }
 
@@ -223,7 +224,7 @@ public class QuestionActivity extends AppCompatActivity implements QuestionFragm
     /**
      * 上一题
      */
-    private synchronized void preQuestion(){
+    private synchronized void preQuestion() {
         int currentItem = questionViewPager.getCurrentItem();
         currentItem = currentItem - 1;
         if (currentItem > dataBeans.size() - 1) {
@@ -235,7 +236,7 @@ public class QuestionActivity extends AppCompatActivity implements QuestionFragm
     /**
      * 下一题
      */
-    private synchronized void nextQuestion(){
+    private synchronized void nextQuestion() {
         int currentItem = questionViewPager.getCurrentItem();
         currentItem = currentItem + 1;
         if (currentItem < 0) {
@@ -250,11 +251,11 @@ public class QuestionActivity extends AppCompatActivity implements QuestionFragm
         /**
          * 未做过的题目 单项选择题选择后直接选择答案后延时进入下一题 ； 多项选择/题目选择后修改的  需要自行滑动活着点击下一题
          */
-        if(dataBeanTemp.getQuestion_select()==-1 && dataBeanTemp.getOption_type()!=QuestionInfo.TYPE_Multiple_Choice){
+        if (dataBeanTemp.getQuestion_select() == -1 && dataBeanTemp.getOption_type() != QuestionInfo.TYPE_Multiple_Choice) {
             //延时下一题
-            new Handler().postDelayed(new Runnable(){
+            new Handler().postDelayed(new Runnable() {
                 public void run() {
-                    if (position==curPosition2) {
+                    if (position == curPosition2) {
                         //execute the task
                         nextQuestion();
                     }
@@ -266,12 +267,14 @@ public class QuestionActivity extends AppCompatActivity implements QuestionFragm
 
     @Override
     public synchronized void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.bt_pre:
                 preQuestion();
                 break;
             case R.id.bt_next:
                 nextQuestion();
+                break;
+            default:
                 break;
         }
     }
